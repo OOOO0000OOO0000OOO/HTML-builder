@@ -1,1 +1,33 @@
+const fs = require('fs/promises');
+const path = require('path');
+
+async function clearDest(dest) {
+  try {
+    await fs.rm(dest, { recursive: true, force: true });
+    await fs.mkdir(dest, { recursive: true });
+  } catch (err) {
+    console.error('Function clearDest:', err);
+  }
+}
+
+async function copyDir(src, dest) {
+  try {
+    await clearDest(dest);
+    const files = await fs.readdir(src, { withFileTypes: true });
+    for (const file of files) {
+      if (file.isFile()) {
+        fs.copyFile(path.join(src, file.name), path.join(dest, file.name));
+      }
+    }
+    return 'Source directory has been successfully copied.';
+  } catch (err) {
+    return 'Unexpected error. Ensure the \'files\' directory is present and not empty.';
+  }
+}
+
+copyDir(
+  path.join(__dirname, 'files/'),
+  path.join(__dirname, 'files-copy/')
+).then((res) => console.log(res));
+
 
