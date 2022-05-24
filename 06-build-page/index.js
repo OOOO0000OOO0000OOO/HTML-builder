@@ -57,9 +57,9 @@ async function buildPage() {
     await copyAssets(path.join(__dirname, 'assets'), path.join(__dirname, 'project-dist', 'assets'));
     await buildHTML();
     await mergeStyles();
-    return 'The document has been successfully created.';
+    return '\x1b[1m\x1b[32mThe document has been successfully created.\x1b[0m';
   } catch (err) {
-    return `Unexpected error!\n${err.message || err}`;
+    return `\x1b[1m\x1b[31mUnexpected error!\n\x1b[0m\x1b[31m${err.message || err}\x1b[0m`;
   }
 }
 

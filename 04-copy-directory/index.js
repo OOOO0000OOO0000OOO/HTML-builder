@@ -19,9 +19,9 @@ async function copyDir(src, dest) {
         fs.copyFile(path.join(src, file.name), path.join(dest, file.name));
       }
     }
-    return 'Source directory has been successfully copied.';
+    return '\x1b[1m\x1b[32mSource directory has been successfully copied.\x1b[0m';
   } catch (err) {
-    return 'Unexpected error. Ensure the \'files\' directory is present and not empty.';
+    return '\x1b[31mUnexpected error. Ensure the \'files\' directory is present and not empty.\x1b[0m';
   }
 }
 

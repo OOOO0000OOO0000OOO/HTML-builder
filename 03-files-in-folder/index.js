@@ -12,11 +12,11 @@ async function printFiles() {
         const stats = await fs.stat(filePath);
 
         console.log(
-          `${path.parse(filePath).name} - ${path.extname(file.name).slice(1)} - ${stats.size} bytes`
+          `\x1b[35m\x1b[1m${path.parse(filePath).name} - ${path.extname(file.name).slice(1)} - ${stats.size} bytes\x1b[0m`
         );
       }
   } catch (err) {
-    console.error(err);
+    console.log('\x1b[31mFailed to get files. Ensure the \'secret-folder\' directory is present and not empty.\x1b[0m');
   }
 }
 
